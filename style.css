@@ -65,6 +65,48 @@ body{
     padding: 0 30px !important;
 }
 
+
+/* Styles for List item */
+.meal-details ul{
+    padding-left: 0px;
+}
+.meal-details ul li{
+	font-size: 16px;
+	margin-bottom: 1em;
+	list-style-type: none;
+	padding: .25em 0 0 2.5em;
+	position: relative;
+}
+.meal-details ul li:before{
+		content: " ";
+		display: block;
+		border: solid .8em #473679;
+		border-radius: 5px;
+		height: 0;
+		width: 0;
+		position: absolute;
+		left: .2em;
+		top: 40%;
+		margin-top: -.5em;
+}
+.meal-details ul li:after{
+		content: " ";
+		display: block;
+		width: .3em;
+		height: .6em;
+		border: solid #fff;
+		border-width: 0 .2em .2em 0;
+		position: absolute;
+		left: 13px;
+		top: 13px;
+		margin-top: -.2em;
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		transform: rotate(45deg);
+}
+
+
 footer{
     margin-top: 50px;
 }
