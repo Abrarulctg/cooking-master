@@ -68,3 +68,18 @@ body{
 footer{
     margin-top: 50px;
 }
+
+
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+    
+    .btn-search{
+        padding: 10px 8px;
+        background-color: #473679;
+        color: #fff;
+        font-weight: 700;
+    }
+    .detailed-meal-info{
+        width: 90%;
+    }
+}

@@ -91,11 +91,7 @@
             //fetching Meal Data]
             fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${searchInput}`)
                 .then(res => res.json())
-                .then(data => {
-                    //console.log(data);
-
-                    displayMeal(data)
-                })
+                .then(data => displayMeal(data))
         })
 
         const displayMeal = allMeal => {
@@ -104,7 +100,7 @@
 
             for (let i = 0; i < allMeal.meals.length; i++) {
                 const meal = allMeal.meals[i];
-                console.log(meal)
+                //console.log(meal)
                 //console.log(meal.strMeal);
                 const mealDiv = document.createElement('div');
                 mealDiv.className = 'single-meal col-md-3'
@@ -127,7 +123,7 @@
 
         const displayMealDetails = id => {
             const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
-            console.log(url);
+            //console.log(url);
             fetch(url)
                 .then(res => res.json())
                 .then(data => renderMealInfo(data))
@@ -135,7 +131,7 @@
         }
 
         const renderMealInfo = meal => {
-            console.log(meal);
+            //console.log(meal);
             const mealInfo = meal.meals[0];
             // for(let i = 0; i < mealInfo.str)
             const detailsMealDiv = document.getElementById('details-meal');
