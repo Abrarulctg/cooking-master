@@ -32,6 +32,39 @@ body{
 
 
 .single-meal{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.meal-img{
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.card{
+    border:none;
+}
+.single-meal a{
+    color: #000;
+    text-decoration: none;
+}
+.single-meal a:hover{
+    text-decoration: underline;
+}
+  
+
+.detailed-meal-info{
+    width: 60%;
+    /* text-align:center; */
+    margin-left: auto;
+    margin-right: auto;
+}
+.detailed-meal-info .card{
+    padding: 0 30px !important;
+}
+
+footer{
+    margin-top: 50px;
 }

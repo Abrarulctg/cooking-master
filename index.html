@@ -43,23 +43,37 @@
                 </div>
             </div>
         </nav>
+        
+        <div id="primary-meals">
+            <div class="search-box">
+                <div class="input-group mt-5">
+                    <input type="text" id="search-input" class="form-control"
+                        placeholder="Search for Meal by First letter of Meal name... (ex: a)"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn btn-search" type="button" id="search-btn">Search</button>
+                </div>
+            </div>
 
-        <div class="search-box">
-            <div class="input-group mt-5">
-                <input type="text" id="search-input" class="form-control"
-                    placeholder="Search for Meal by First letter of Meal name... (ex: a)"
-                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-search" type="button" id="search-btn">Search</button>
+            <!-- Meal Data -->
+            <div id="meal-container" class="row">
+
             </div>
         </div>
 
-        <!-- Meal Data -->
-        <div id="meal-container" class="row">
+
+
+        <div id="details-meal" class="mt-5 detailed-meal-info">
 
         </div>
+
+       
     </div>
 
 
+
+    <footer class="text-muted text-center">
+        <p>&copy All Right Reserved by <a href="https://www.linkedin.com/in/abrarul-hoque/">Abrarul Hoque</a></p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
@@ -79,7 +93,7 @@
                 .then(res => res.json())
                 .then(data => {
                     //console.log(data);
-                    
+
                     displayMeal(data)
                 })
         })
@@ -88,21 +102,60 @@
             //console.log(allMeal.meals[0].idMeal);
             const mealContainer = document.getElementById('meal-container');
 
-            for(let i = 0; i < allMeal.meals.length; i++){
+            for (let i = 0; i < allMeal.meals.length; i++) {
                 const meal = allMeal.meals[i];
                 console.log(meal)
                 //console.log(meal.strMeal);
                 const mealDiv = document.createElement('div');
-                mealDiv.className = 'single-meal card col-md-4'
+                mealDiv.className = 'single-meal col-md-3'
 
                 const mealsInfo = `
-                    <img class="w-100" src=${meal.strMealThumb}>
-                    <h4>${meal.strMeal}</h4>
+                    <div class="" onclick="displayMealDetails('${meal.idMeal}')">
+                        <img class="meal-img" src=${meal.strMealThumb}>
+                        <div class="card p-2">
+                            <h5>${meal.strMeal}</h5>
+                        </div>
+                    </div>
                 `
                 mealDiv.innerHTML = mealsInfo;
                 mealContainer.appendChild(mealDiv);
             }
+        }
 
+
+        //Showing Single Meal Details
+
+        const displayMealDetails = id => {
+            const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+            console.log(url);
+            fetch(url)
+                .then(res => res.json())
+                .then(data => renderMealInfo(data))
+                
+        }
+
+        const renderMealInfo = meal => {
+            console.log(meal);
+            const mealInfo = meal.meals[0];
+            // for(let i = 0; i < mealInfo.str)
+            const detailsMealDiv = document.getElementById('details-meal');
+            detailsMealDiv.innerHTML = `
+                <img class="meal-img" src=${mealInfo.strMealThumb}>
+                <div class="card p-2">
+                    <h1 class="mt-4">${mealInfo.strMeal}</h1>
+                    <h3 class="mt-2">Ingredients</h3>
+                <ul>
+                    <li>${mealInfo.strIngredient1}</li>
+                    <li>${mealInfo.strIngredient2}</li>
+                    <li>${mealInfo.strIngredient3}</li>
+                    <li>${mealInfo.strIngredient4}</li>
+                    <li>${mealInfo.strIngredient5}</li>
+                    <li>${mealInfo.strIngredient6}</li>
+                </ul>
+                </div>
+            `
+            const mealContainer = document.getElementById('primary-meals');
+                mealContainer.style.display = "none";
         }
     </script>
 </body>
